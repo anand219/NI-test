@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"VM_1","Source":"../modules/VM","Dir":"../modules/VM"},{"Key":"VM_2","Source":"../modules/VM","Dir":"../modules/VM"},{"Key":"Vnet","Source":"../modules/Vnet","Dir":"../modules/Vnet"},{"Key":"resource_group","Source":"../modules/RG","Dir":"../modules/RG"},{"Key":"subnet","Source":"../modules/Subnet","Dir":"../modules/Subnet"}]}
