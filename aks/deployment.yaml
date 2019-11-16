@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nitest-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nitest
+    spec:
+      containers:
+      - name: nitest
+        image: nitest.azurecr.io/samples/nodejs:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
