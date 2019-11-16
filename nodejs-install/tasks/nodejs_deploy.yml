@@ -1,19 +1,19 @@
 - stat: validate nodejs_home exist 
-    path: '/opt/{{ appDir }}'
+    path: '/opt/nodejs'
   register: nodejs_home
 
 - file: create directory
-    path: '/opt/{{ appDir }}'
+    path: '/opt/nodejs'
     state=directory
   when: nodejs_home.stdout == FALSE
 
 - git:
     repo: '{{ git_url }}'
-    dest: "{{ nodejs_home }}"
+    dest: "/opt/nodejs"
 
 - name: Running NPM install
   npm: 
-    path={{ homeDir }}/{{ appDir }}/backened
+    path=/opt/nodejs/
     register: npm_finished
     when: git_finished.changed
 
