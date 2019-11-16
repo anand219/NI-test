@@ -1,0 +1,6 @@
+---
+- include_playbook: nodejs_install.yml
+  tags: nodejs_install
+
+- include_playbook: nodejs_deploy.yml
+  tags: nodejs_deploy

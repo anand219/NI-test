@@ -1,0 +1,27 @@
+- stat: validate nodejs_home exist 
+    path: '/opt/{{ appDir }}'
+  register: nodejs_home
+
+- file: create directory
+    path: '/opt/{{ appDir }}'
+    state=directory
+  when: nodejs_home.stdout == FALSE
+
+- git:
+    repo: '{{ git_url }}'
+    dest: "{{ nodejs_home }}"
+
+- name: Running NPM install
+  npm: 
+    path={{ homeDir }}/{{ appDir }}/backened
+    register: npm_finished
+    when: git_finished.changed
+
+- name: Stop APP
+  command: pm2 stop app chdir={{homeDir}}/{{appDir}}/backened
+  ignore_errors: yes
+
+- name: Start APP
+  command: pm2 start index.js --name app chdir={{homeDir}}/{{appDir}}/backened
+  ignore_errors: yes
+  when: npm_finished.changed
