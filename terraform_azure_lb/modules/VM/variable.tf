@@ -29,3 +29,11 @@ variable "admin_username" {
 variable "admin_password" {
   description = "Admin password will be given here"
 }
+
+variable "av_set_name" {
+  description = "Availiablity Set name will be provided"
+}
+
+variable "av_set_id" {
+  description = "Avaliablity Set id will be provided"
+}
