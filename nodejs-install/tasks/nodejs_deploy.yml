@@ -1,27 +1,30 @@
-- stat: validate nodejs_home exist 
+---
+- name: check the folder path
+  stat:
     path: '/opt/nodejs'
   register: nodejs_home
 
-- file: create directory
+- file:
     path: '/opt/nodejs'
-    state=directory
-  when: nodejs_home.stdout == FALSE
+    state: directory
+  when: nodejs_home.stat.exists == False
 
 - git:
     repo: '{{ git_url }}'
     dest: "/opt/nodejs"
+  register: git_finished
 
 - name: Running NPM install
-  npm: 
-    path=/opt/nodejs/
-    register: npm_finished
-    when: git_finished.changed
+  npm:
+    path: /opt/nodejs/
+  register: npm_finished
+  when: git_finished.changed
 
 - name: Stop APP
   command: pm2 stop app chdir=/opt/nodejs/node-js-getting-started/
   ignore_errors: yes
 
 - name: Start APP
-  command: pm2 start index.js --name app chdir=/opt/nodejs/node-js-getting-started/
+  command: pm2 start index.js --name app chdir=/opt/nodejs/
   ignore_errors: yes
   when: npm_finished.changed

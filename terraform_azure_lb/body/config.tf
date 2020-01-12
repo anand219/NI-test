@@ -49,3 +49,23 @@ variable "admin_username" {
 variable "admin_password" {
   description = "Admin password will be given"
 }
+
+variable "av_set_name" {
+  description = "Provided Availabllity Set"
+}
+
+variable "pip_name" {
+  description = "Public Addres name will be provided"
+}
+
+variable "frontend_ip_configuration" {
+   description = "Front end Ip configuration name will be provided "
+}
+
+variable "backendpool_name" {
+  description = "Backend pool name will be provided"
+}
+
+variable "azurerm_lb_name" {
+  description = "Azure lb name will be provided"
+}
